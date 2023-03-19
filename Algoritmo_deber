@@ -1,0 +1,207 @@
+class calcular {
+  sumaPerfectos() {
+    const serie = document.getElementById("num1").value.split(",").map(Number);
+    const perfect = (num) => {
+      let sum = 0;
+      for (let i = 0; i < num; i++) {
+        if (num % i === 0) {
+          sum += i;
+        }
+      }
+      return sum === num;
+    };
+    let sumar = 0;
+    for (let i = 0; i < serie.length; i++) {
+      if (perfect(serie[i])) {
+        sumar += serie[i];
+      }
+    }
+    document.getElementById("resp").textContent = `La suma es: ${sumar}`;
+  }
+
+  numeroPrimo() {
+    const serieNum = document.getElementById("num1").value;
+    const serie = serieNum.split(",").map(Number);
+    let primos = [];
+    for (let i = 0; i < serie.length; i++) {
+      let numPrimo = true;
+      for (let j = 2; j < serie[i]; j++) {
+        if (serie[i] % j === 0) {
+          numPrimo = false;
+          break;
+        }
+      }
+      if (serie[i] > 1 && numPrimo) primos.push(serie[i]);
+    }
+    document.getElementById("resp").innerHTML =
+      "Los numeros primos son: " + primos.join(", ");
+  }
+
+  Potencia() {
+    const base = Number(document.getElementById("num1").value);
+    const exponente = Number(document.getElementById("num2").value);
+    let result = 1;
+    for (let i = 0; i < exponente; i++) {
+      result *= base;
+    }
+    document.getElementById("resp").textContent = `El resultado es: ${result}`;
+  }
+
+  potencias(numbers) {
+    let result = [];
+    for (let i = 0; i < numbers.length; i++) {
+      result.push(`${numbers[i]} = ${Math.pow(numbers[i], numbers[i])}`);
+    }
+    const output = `El resultado es: ${result.join(" ")}`;
+    return output;
+  }
+  Potencias() {
+    const serieInput = document.getElementById("num1");
+    const serie = serieInput.value.split(",").map(Number);
+    const result = this.potencias(serie);
+    document.getElementById("resp").textContent = result;
+  }
+
+  tablaMultiplicar() {
+    const numero = Number(document.getElementById("num1").value);
+    let result = "";
+    for (let i = 1; i <= 12; i++) {
+      result += `${numero} x ${i} = ${numero * i}<br>`;
+    }
+    document.getElementById("resp").innerHTML = result;
+  }
+
+  divisores() {
+    const numero = parseInt(document.getElementById("num1").value);
+    const inicio = parseInt(document.getElementById("num2").value);
+    let result = [];
+    for (let i = inicio; i <= numero; i++) {
+      if (numero % i === 0) {
+        result.push(i);
+      }
+    }
+    document.getElementById("resp").textContent = `El resultado es: ${result}`;
+  }
+
+  sumDivisor() {
+    const numero = parseInt(document.getElementById("num1").value);
+    const iniciar = parseInt(document.getElementById("num2").value);
+    let result = 0;
+    for (let i = iniciar; i < numero; i++) {
+      if (numero % i === 0) {
+        result += i;
+      }
+    }
+    document.getElementById("resp").textContent = `La respuesta es: ${result}`;
+  }
+
+  narreglo() {
+    const number = parseInt(document.getElementById("num1").value);
+    const numero = number
+      .toString()
+      .split("")
+      .reverse()
+      .map(function (a) {
+        return parseInt(a, 10);
+      });
+
+    const result = numero;
+    document.getElementById("resp").textContent = result;
+  }
+  calculate(num) {
+    let number = num.toString();
+    let result = 0;
+    for (let i = 0; i < number.length; i++) {
+      result += parseInt(number[i]);
+    }
+    return `La suma de los digitos de ${num} es: ${result}`;
+  }
+  sumarDigitos() {
+    const numSerie = document.getElementById("num1").value;
+    const resultado = this.calculate(numSerie);
+    document.getElementById("resp").textContent = resultado;
+  }
+  par(num) {
+    const number = num.toString();
+    let result = [];
+    for (let i = 0; i < number.length; i++) {
+      let par = parseInt(number[i]);
+      if (par % 2 === 0) {
+        result.push(par);
+      }
+    }
+    return result;
+  }
+  calcularPar() {
+    const numSerie = document.getElementById("num1").value;
+    const numerosPares = this.par(numSerie);
+    document.getElementById("resp").textContent = numerosPares.join(", ");
+  }
+
+  primerDigito(num) {
+    let numero = num.toString();
+    let firstChart = numero.charAt(0);
+    let digito = parseInt(firstChart);
+    return `El primer dígito es: ${digito}`;
+  }
+  primer() {
+    const numSerie = document.getElementById("num1").value;
+    const primerDigito = this.primerDigito(numSerie);
+    document.getElementById("resp").textContent = primerDigito;
+  }
+  ultimoDigito(num) {
+    let numero = num.toString();
+    let lastChar = numero.charAt(numero.length - 1);
+    let digito = parseInt(lastChar);
+    return `El último dígito es: ${digito}`;
+  }
+  ultimo() {
+    const numSerie = document.getElementById("num1").value;
+    const resultado = this.ultimoDigito(numSerie);
+    document.getElementById("resp").textContent = resultado;
+  }
+  factor(number) {
+    let result = 1;
+    for (let i = 2; i <= number; i++) {
+      result *= i;
+    }
+    return `El factorial es: ${result}`;
+  }
+  factorial() {
+    const numSerie = document.getElementById("num1").value;
+    const resultado = this.factor(numSerie);
+    document.getElementById("resp").textContent = resultado;
+  }
+  factorialesArreglo(arr) {
+    let factoriales = [];
+    for (let i = 0; i < arr.length; i++) {
+      let factorial = 1;
+      for (let j = 1; j <= arr[i]; j++) {
+        factorial *= j;
+      }
+      factoriales.push(factorial);
+    }
+    return `Los factoriales son: ${factoriales}`;
+  }
+  arregloFactorial() {
+    const numSerie = document.getElementById("num1").value;
+    const numeros = numSerie.split(",").map(Number);
+    const resultado = this.factorialesArreglo(numeros);
+    document.getElementById("resp").textContent = resultado;
+  }
+  rangoNumeros(inicial, final) {
+    let number = [];
+    for (let i = inicial; i < final; i++) {
+      number.push(i);
+    }
+    return `Números en el rango sin contar el ultimo es: ${number}`;
+  }
+
+  calcularRango() {
+    const numInicial = Number(document.getElementById("num1").value);
+    const numFinal = Number(document.getElementById("num2").value);
+    const resultado = this.rangoNumeros(numInicial, numFinal);
+    document.getElementById("resp").textContent = resultado;
+  }
+}
+const cal = new calcular();
